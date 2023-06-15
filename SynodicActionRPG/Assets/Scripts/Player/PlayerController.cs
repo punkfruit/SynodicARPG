@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,25 +7,26 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float collisionOffset = 0.5f;
     public ContactFilter2D movementFilter;
-    public float spriteDirThreshhold = 0.9f;
+    public float spriteDirThreshold = 0.9f;
 
-    public Vector2 movementInput;
-    Rigidbody2D theRB;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private Vector2 movementInput;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    public Animator anim;
     void Start()
     {
-        theRB = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
+    {
+        HandleMovement();
+        HandleAnimation();
+    }
+
+    private void HandleMovement()
     {
         if (movementInput != Vector2.zero)
         {
@@ -38,42 +38,42 @@ public class PlayerController : MonoBehaviour
 
                 if (!success)
                 {
-                    success = TryMove(new Vector2(0, movementInput.y));
+                    TryMove(new Vector2(0, movementInput.y));
                 }
             }
         }
+    }
 
-        anim.SetFloat("moveX", movementInput.x);
-        anim.SetFloat("moveY", movementInput.y);
+    private void HandleAnimation()
+    {
+        animator.SetFloat("moveX", movementInput.x);
+        animator.SetFloat("moveY", movementInput.y);
 
-        if(movementInput.x >= spriteDirThreshhold || movementInput.x <= -spriteDirThreshhold || movementInput.y >= spriteDirThreshhold || movementInput.y <= -spriteDirThreshhold)
+        if (Mathf.Abs(movementInput.x) >= spriteDirThreshold || Mathf.Abs(movementInput.y) >= spriteDirThreshold)
         {
-            anim.SetFloat("lastMoveX", movementInput.x);
-            anim.SetFloat("lastMoveY", movementInput.y);
+            animator.SetFloat("lastMoveX", movementInput.x);
+            animator.SetFloat("lastMoveY", movementInput.y);
         }
     }
 
     private bool TryMove(Vector2 direction)
     {
-        int count = theRB.Cast(
+        int count = rb.Cast(
                 direction,
                 movementFilter,
                 castCollisions,
-                moveSpeed * Time.deltaTime + collisionOffset);
+                moveSpeed * Time.fixedDeltaTime + collisionOffset);
+
         if (count == 0)
         {
-            theRB.MovePosition(theRB.position + direction * moveSpeed * Time.deltaTime);
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
             return true;
         }
-        else
-        {
-            return false;
-        }
 
-        
+        return false;
     }
 
-    void OnMove(InputValue movementValue)
+    public void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
     }
