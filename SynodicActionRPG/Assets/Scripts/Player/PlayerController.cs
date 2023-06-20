@@ -2,13 +2,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum facingDirection { Up, upRight, Right, downRight, Down, downLeft, Left, upLeft}
 public class PlayerController : MonoBehaviour
 {
     // Public variables to be set in the Unity editor.
+    public facingDirection fd = facingDirection.Right;
     public float moveSpeed = 1f; // The speed at which the player moves.
     public float collisionOffset = 0.5f; // Additional distance to check for collisions beyond the movement distance.
     public ContactFilter2D movementFilter; // Filter to check which objects should be considered for movement collision.
     public float spriteDirThreshold = 0.9f; // Threshold for determining when to update the last move direction.
+    public bool canMove = true;
+    public Transform bulletSpawn;
+    public GameObject bullet;
+    public float AttackCooldown = 1;
+    private float acTimer;
 
     // Private variables.
     private Vector2 movementInput; // The current movement input (x and y directions).
@@ -22,13 +29,23 @@ public class PlayerController : MonoBehaviour
         // Get the Rigidbody2D and Animator components attached to the player.
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        //acTimer = AttackCooldown;
     }
 
     // Called at a fixed interval (ideal for physics calculations).
     private void FixedUpdate()
     {
-        HandleMovement(); // Handle player movement.
+        if(canMove)
+            HandleMovement(); // Handle player movement.
         HandleAnimation(); // Handle player animation based on movement.
+    }
+
+    private void Update()
+    {
+        if(acTimer > 0)
+        {
+            acTimer -= Time.deltaTime;
+        }
     }
 
     // Handle the player's movement.
@@ -97,5 +114,48 @@ public class PlayerController : MonoBehaviour
     {
         // Get the Vector2 movement input from the InputValue.
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    public void OnFire(InputValue fireValue)
+    {
+        if(acTimer <= 0)
+        {
+            animator.SetTrigger("Shoot");
+            GameObject bull = Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+            if (fd == facingDirection.Down)
+            {
+                bull.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            }
+            acTimer = AttackCooldown;
+
+        }
+        
+
+    }
+
+    public void FireBullet()
+    {
+        if(acTimer <= 0)
+        {
+            
+        }
+        
+        
+    }
+    public void ChangeLookDir(facingDirection dir)
+    {
+        fd = dir;
+    }
+
+    public void SetCanMove(int val)
+    {
+        if (val == 1)
+        {
+            canMove = true;
+        }
+        else
+        {
+            canMove = false;
+        }
     }
 }
