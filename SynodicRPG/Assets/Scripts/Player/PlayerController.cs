@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
+    public DialogueTrigger dig;
+
     private void Awake()
     {
         if(instance != null)
@@ -38,19 +40,19 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(playerState != PlayerStates.ATTACK)
+        if(playerState != PlayerStates.ATTACK && canMove)
         {
             theRB.velocity = moveDirection * speed;
-            HandleAnimation();
+            
         }
         else
         {
             theRB.velocity = Vector2.zero;
         }
-        
 
 
-        
+        HandleAnimation();
+
     }
 
     public void HandleAnimation()
@@ -67,13 +69,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputValue movementValue)
     {
-        moveDirection = movementValue.Get<Vector2>();
+        if (canMove)
+        {
+            moveDirection = movementValue.Get<Vector2>();
+        }
+        else
+        {
+            moveDirection = Vector2.zero;
+        }
+        
 
     }
 
     public void OnFire(InputValue fireValue)
     {
-        if(playerState != PlayerStates.ATTACK)
+        if(playerState != PlayerStates.ATTACK && canMove)
         {
             if (canAttack)
             {
@@ -87,5 +97,14 @@ public class PlayerController : MonoBehaviour
     public void ReturnToIdle()
     {
         playerState = PlayerStates.IDLE;
+    }
+
+    public void OnDialogue(InputValue fireValue)
+    {
+        if(dig != null)
+        {
+            dig.TriggerDialogue();
+            moveDirection = Vector2.zero;
+        }
     }
 }

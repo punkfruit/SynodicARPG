@@ -44,7 +44,7 @@ public class DialogueTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             playerInRange = true;
-
+            PlayerController.instance.dig = this;
 
         }
     }
@@ -57,40 +57,41 @@ public class DialogueTrigger : MonoBehaviour
 
             if (visulCue != null)
                 visulCue.SetActive(false);
+
+            PlayerController.instance.dig = null;
         }
     }
 
+   
 
-    public void TriggerDialogue(InputAction.CallbackContext context)
+
+    public void TriggerDialogue()
     {
-        if (context.performed)
+
+        if (playerInRange)
         {
-            if (playerInRange)
+
+
+            if (dialogueAnim.GetBool("isOpen") == false)
             {
 
-                
-                if (dialogueAnim.GetBool("isOpen") == false)
-                {
-
-                    DialogueManager.instance.StartDialogue(dialogue);
-
-
-                }
-                else
-                {
-                    DialogueManager.instance.DisplayNextSentence();
-
-
-                }
-
-                
-
-
+                DialogueManager.instance.StartDialogue(dialogue);
 
 
             }
-        }
+            else
+            {
+                DialogueManager.instance.DisplayNextSentence();
 
+
+            }
+
+
+
+
+
+
+        }
 
     }
 }

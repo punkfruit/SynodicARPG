@@ -296,8 +296,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
-    name: 
-    sentences: []
+    name: Sign
+    sentences:
+    - "hi im a sign\t"
+    - this is cool!
+    - wanna be friends?
   collid: {fileID: 283981425}
   sign: 1
   playerInRange: 0
@@ -443,8 +446,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: dialogue text examples lol
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61d0a184c313b7642ba4c006d9578412, type: 2}
-  m_sharedMaterial: {fileID: 6531552711991624561, guid: 61d0a184c313b7642ba4c006d9578412, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2047c7586c9eef94e9b5dc6fa5da6b39, type: 2}
+  m_sharedMaterial: {fileID: -7290923805976895638, guid: 2047c7586c9eef94e9b5dc6fa5da6b39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1655,7 +1658,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.030959085}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1666,7 +1669,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.54, y: 0.06}
+  m_Size: {x: 0.54, y: 0.12191817}
   m_EdgeRadius: 0
 --- !u!1001 &749655763
 PrefabInstance:
@@ -2207,8 +2210,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: char name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 61d0a184c313b7642ba4c006d9578412, type: 2}
-  m_sharedMaterial: {fileID: 6531552711991624561, guid: 61d0a184c313b7642ba4c006d9578412, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2047c7586c9eef94e9b5dc6fa5da6b39, type: 2}
+  m_sharedMaterial: {fileID: -7290923805976895638, guid: 2047c7586c9eef94e9b5dc6fa5da6b39, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3737,8 +3740,8 @@ GameObject:
   - component: {fileID: 1270906818}
   - component: {fileID: 1270906817}
   - component: {fileID: 1270906821}
-  - component: {fileID: 1270906822}
   - component: {fileID: 1270906823}
+  - component: {fileID: 1270906824}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3765,6 +3768,7 @@ MonoBehaviour:
   canAttack: 1
   playerState: 0
   canMove: 1
+  dig: {fileID: 0}
 --- !u!50 &1270906818
 Rigidbody2D:
   serializedVersion: 4
@@ -3839,8 +3843,29 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!61 &1270906822
-BoxCollider2D:
+--- !u!95 &1270906823
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270906816}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4bce9355696aef9458c31a4d5096ca9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &1270906824
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3848,7 +3873,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1270906816}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 46c42b641285ed944bdabf8abf5da71c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3871,40 +3896,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.23}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0.22485611}
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.25}
-  m_EdgeRadius: 0
---- !u!95 &1270906823
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270906816}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4bce9355696aef9458c31a4d5096ca9a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Radius: 0.13167736
 --- !u!1001 &1330303928
 PrefabInstance:
   m_ObjectHideFlags: 0
