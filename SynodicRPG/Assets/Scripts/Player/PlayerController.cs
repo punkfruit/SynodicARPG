@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public bool canAttack = true;
     public PlayerStates playerState = PlayerStates.IDLE;
 
+    public bool canMove = true;
 
     private void Awake()
     {
