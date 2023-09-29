@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8756035846722933648}
   - component: {fileID: 109372668196468785}
   - component: {fileID: 6852980515465979992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3184751430183938171}
   - component: {fileID: 8269659903353863237}
   - component: {fileID: 2318354578603053946}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spr
   m_TagString: Untagged
   m_Icon: {fileID: 0}

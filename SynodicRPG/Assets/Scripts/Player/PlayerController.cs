@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public DialogueTrigger dig;
 
+    public int weaponDamage;
+
     private void Awake()
     {
         if(instance != null)
