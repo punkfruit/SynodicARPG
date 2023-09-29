@@ -9,7 +9,7 @@ public class DialogueTrigger : MonoBehaviour
     public Collider2D collid;
     public bool sign, playerInRange;
     public Animator dialogueAnim;
-
+    public Sprite icon;
     public GameObject visulCue;
 
     
