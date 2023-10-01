@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("moveX", moveDirection.x);
         anim.SetFloat("moveY", moveDirection.y);
 
-        if(moveDirection != Vector2.zero)
+        if(moveDirection != Vector2.zero && playerState != PlayerStates.ATTACK)
         {
             anim.SetFloat("LastMoveX", moveDirection.x);
             anim.SetFloat("LastMoveY", moveDirection.y);
