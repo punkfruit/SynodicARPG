@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 3184751430183938171}
   - component: {fileID: 8269659903353863237}
   - component: {fileID: 2318354578603053946}
+  - component: {fileID: 4047119335300481891}
   m_Layer: 7
   m_Name: spr
   m_TagString: Untagged
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8694929524230031937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8696f4fc55c857c4182101c4cdb1b1c6, type: 3}
   m_Name: 
@@ -195,4 +196,20 @@ MonoBehaviour:
   yPos: 0
   above: 10
   below: -10
+  target: {fileID: 3184751430183938171}
+--- !u!114 &4047119335300481891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694929524230031937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad2e7827f4694bed9a0d4e3ab57b507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageType: 0
+  spriteRenderer: {fileID: 8269659903353863237}
+  tilemapRenderer: {fileID: 0}
   target: {fileID: 3184751430183938171}
