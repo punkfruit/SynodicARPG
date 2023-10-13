@@ -7,9 +7,11 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+    private Sentence currentSentence;
 
     public TextMeshProUGUI nameText, dialogueText;
-    private Queue<string> sentences;
+    //private Queue<string> sentences;
+    private Queue<Sentence> sentences;
     public Animator dialogueAnim;
 
     public Image faceIcon;
@@ -35,21 +37,20 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
-        sentences = new Queue<string>();
+        sentences = new Queue<Sentence>();
     }
 
-    public void StartDialogue(Dialogue dialogue, Sprite icon)
-    {
-        faceIcon.sprite = icon;
 
+
+    public void StartDialogue(Dialogue dialogue)
+    {
         dialogueIsPlaying = true;
         sentenceIsTyping = false;
         dialogueAnim.SetBool("isOpen", true);
         PlayerController.instance.canMove = false;
-        nameText.text = dialogue.name;
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (Sentence sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -64,34 +65,35 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-
-
         StopAllCoroutines();
         if (sentenceIsTyping)
         {
-
-            ShowSentence(sentence);
+            ShowSentence(currentSentence.text);
         }
         else
         {
-            sentence = sentences.Dequeue();
-            StartCoroutine(TypeSentence(sentence));
+            currentSentence = sentences.Dequeue();
+            nameText.text = currentSentence.characterName;
+            faceIcon.sprite = currentSentence.characterIcon;
+            StartCoroutine(TypeSentence(currentSentence.text));
         }
-
-
     }
 
-    IEnumerator TypeSentence(string sentence)
+
+
+
+    IEnumerator TypeSentence(string sentenceText)
     {
         sentenceIsTyping = true;
         dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+        foreach (char letter in sentenceText.ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(typeSpeed);
         }
         sentenceIsTyping = false;
     }
+
 
     public void ShowSentence(string sentence)
     {
