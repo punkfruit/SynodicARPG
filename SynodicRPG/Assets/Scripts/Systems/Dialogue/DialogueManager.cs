@@ -12,6 +12,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     public Animator dialogueAnim;
 
+    public Image faceIcon;
     public bool dialogueIsPlaying;
 
     public bool sentenceIsTyping;
@@ -37,8 +38,10 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, Sprite icon)
     {
+        faceIcon.sprite = icon;
+
         dialogueIsPlaying = true;
         sentenceIsTyping = false;
         dialogueAnim.SetBool("isOpen", true);

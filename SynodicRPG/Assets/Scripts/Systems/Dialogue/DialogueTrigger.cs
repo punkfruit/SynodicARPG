@@ -75,7 +75,7 @@ public class DialogueTrigger : MonoBehaviour
             if (dialogueAnim.GetBool("isOpen") == false)
             {
 
-                DialogueManager.instance.StartDialogue(dialogue);
+                DialogueManager.instance.StartDialogue(dialogue, icon);
 
 
             }
