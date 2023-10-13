@@ -603,17 +603,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b00ef151d75db49af237633d1123e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flash: 0
+  rend: {fileID: 1162932119}
   spr: {fileID: 1162932119}
   anim: {fileID: 401592765}
   theRB: {fileID: 401592766}
-  walkSpeed: 2
+  walkSpeed: 1
   health: 5
   stopDistance: 2
-  attackSpeed: 5
+  attackSpeed: 2
   isAttacking: 0
   lastKnownPlayerPosition: {x: 0, y: 0}
+  flashColor: {r: 1, g: 0, b: 0, a: 0}
   followPlayer: 0
-  attackDelay: 0.2
+  attackDelay: 0.3
   wanderDuration: 1
   waitDuration: 1
   wanderSpeed: 0.5
@@ -2828,7 +2831,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: -876546973899608171, guid: de40a13b1c6301d47ac204e74246e0dc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

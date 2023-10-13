@@ -12,6 +12,7 @@ public class HitBox : MonoBehaviour
         if (other.tag == "Sword")
         {
             thisEnemy.TakeDamage(PlayerController.instance.weaponDamage);
+            thisEnemy.anim.SetTrigger("Flash");
         }
     }
 }

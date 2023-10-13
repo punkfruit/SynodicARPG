@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float flash = 0;
+    public Renderer rend;
     public SpriteRenderer spr;
     public Animator anim;
     public Rigidbody2D theRB;
@@ -16,7 +18,7 @@ public class Enemy : MonoBehaviour
 
 
 
-
+    
 
 
     public void TakeDamage(int dam)

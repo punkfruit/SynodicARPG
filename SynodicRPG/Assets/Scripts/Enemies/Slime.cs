@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Slime : Enemy
 {
+    public Color flashColor;
+
     public bool followPlayer;
     public float attackDelay = 0.3f;
     public float wanderDuration = 2.0f;   // How long the enemy should wander in a chosen direction
@@ -11,7 +13,10 @@ public class Slime : Enemy
     private bool isWandering = false;     // Flag to check if the enemy is currently wandering
     public float wanderSpeed;
 
-
+    private void Start()
+    {
+        spr.material.SetColor("_FlashColor", flashColor);
+    }
 
     void FixedUpdate()
     {
@@ -39,6 +44,12 @@ public class Slime : Enemy
         {
             followPlayer = false;
         }
+    }
+
+    private void Update()
+    {
+
+        spr.material.SetFloat("_BlendOpacity", flash);
     }
 
     public void Follow()
