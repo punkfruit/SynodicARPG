@@ -6,6 +6,8 @@ public class HitBox : MonoBehaviour
 {
     public Enemy thisEnemy;
 
+    public int contactDamage;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,6 +15,11 @@ public class HitBox : MonoBehaviour
         {
             thisEnemy.TakeDamage(PlayerController.instance.weaponDamage);
             thisEnemy.anim.SetTrigger("Flash");
+        }
+
+        if(other.tag == "Player")
+        {
+            PlayerController.instance.TakeDamage(contactDamage);
         }
     }
 }

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
     public Rigidbody2D theRB;
+    public SpriteRenderer spr;
     public Vector2 moveDirection;
     public float speed = 50;
     public bool canAttack = true;
@@ -21,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public DialogueTrigger dig;
 
     public int weaponDamage;
+
+    public int health, maxhealth;
+    public float flash = 0;
 
     private void Awake()
     {
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
+        health = maxhealth;
     }
 
     private void FixedUpdate()
@@ -55,6 +60,11 @@ public class PlayerController : MonoBehaviour
 
         HandleAnimation();
 
+    }
+
+    private void Update()
+    {
+        spr.material.SetFloat("_BlendOpacity", flash);
     }
 
     public void HandleAnimation()
@@ -108,5 +118,12 @@ public class PlayerController : MonoBehaviour
             dig.TriggerDialogue();
             moveDirection = Vector2.zero;
         }
+    }
+
+    public void TakeDamage(int dam)
+    {
+        health -= dam;
+        anim.SetTrigger("Flash");
+        UIManager.instance.UpdateHealthSlider();
     }
 }
