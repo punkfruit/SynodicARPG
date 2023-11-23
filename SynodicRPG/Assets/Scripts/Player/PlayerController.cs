@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    [Header("Technical")]
     public Animator anim;
     public Rigidbody2D theRB;
     public SpriteRenderer spr;
@@ -16,15 +17,15 @@ public class PlayerController : MonoBehaviour
     public float speed = 50;
     public bool canAttack = true;
     public PlayerStates playerState = PlayerStates.IDLE;
-
+    public PlayerInput playerInput;
     public bool canMove = true;
 
-    public DialogueTrigger dig;
-
+    [Header("Health and Damage")]
     public int weaponDamage;
 
     public int health, maxhealth;
     public float flash = 0;
+
 
     private void Awake()
     {
@@ -43,6 +44,20 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(this);
         health = maxhealth;
+
+        playerInput.onControlsChanged += OnControlsChanged;
+
+        OnControlsChanged(playerInput); //inital control detection!
+    }
+
+    private void OnControlsChanged(PlayerInput input)
+    {
+        string currentControlScheme = input.currentControlScheme;
+
+        // Optionally, you can use a more sophisticated method to determine the device type
+        string deviceType = currentControlScheme == "Gamepad" ? "Controller" : "Keyboard";
+
+        GameManager.NotifyInputDeviceChanged(deviceType);
     }
 
     private void FixedUpdate()
@@ -111,6 +126,7 @@ public class PlayerController : MonoBehaviour
         playerState = PlayerStates.IDLE;
     }
 
+    /*
     public void OnDialogue(InputValue fireValue)
     {
         if(dig != null)
@@ -119,6 +135,7 @@ public class PlayerController : MonoBehaviour
             moveDirection = Vector2.zero;
         }
     }
+    */
 
     public void TakeDamage(int dam)
     {

@@ -171,7 +171,7 @@ TextureImporter:
         height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 11, y: 13, z: 11, w: 15}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1590,12 +1590,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Modern_UI_Style_2_32x32_68
+      name: x1
       rect:
         serializedVersion: 2
-        x: 1088
+        x: 1184
         y: 960
-        width: 480
+        width: 32
         height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -11270,6 +11270,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: x2
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 960
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d65141558e6f8a47a77cda25a60f7b9
+      internalID: 2002052551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: x3
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 960
+        width: 32
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23ef35ad2fdb6a04fb7802c8a67f904e
+      internalID: -1257407855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -11775,7 +11817,6 @@ TextureImporter:
       Modern_UI_Style_2_32x32_65: -1639879934
       Modern_UI_Style_2_32x32_66: 1572930564
       Modern_UI_Style_2_32x32_67: 156981438
-      Modern_UI_Style_2_32x32_68: -961473758
       Modern_UI_Style_2_32x32_69: -1198018683
       Modern_UI_Style_2_32x32_7: -1513988830
       Modern_UI_Style_2_32x32_70: -83925370
@@ -11810,6 +11851,9 @@ TextureImporter:
       Modern_UI_Style_2_32x32_97: 1420164561
       Modern_UI_Style_2_32x32_98: 2124964158
       Modern_UI_Style_2_32x32_99: 426811004
+      x1: -961473758
+      x2: 2002052551
+      x3: -1257407855
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

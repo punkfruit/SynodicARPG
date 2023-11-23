@@ -11,11 +11,34 @@ public class DialogueTrigger : MonoBehaviour
     public Animator dialogueAnim;
     public GameObject visulCue;
 
-    
+
+    public PlayerInput playerInput;
+    public SpriteRenderer uiconSprite;
+    public Sprite[] icons;
 
     private void Start()
     {
-        //dialogueAnim = 
+        playerInput = PlayerController.instance.playerInput;
+        if (playerInput != null)
+        {
+            playerInput.actions["Dialogue"].performed += OnDialoguePerformed;
+        }
+
+        GameManager.OnInputDeviceChanged += UpdateControlSprite;
+    }
+
+    private void UpdateControlSprite(string deviceType)
+    {
+        uiconSprite.sprite = deviceType == "Keyboard" ? icons[0] : icons[1];
+
+    }
+
+    private void OnDialoguePerformed(InputAction.CallbackContext context)
+    {
+        if (!UIManager.instance.inventoryOpen)
+        {
+            TriggerDialogue();
+        }
     }
 
     private void Update()
@@ -43,7 +66,6 @@ public class DialogueTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             playerInRange = true;
-            PlayerController.instance.dig = this;
 
         }
     }
@@ -57,7 +79,6 @@ public class DialogueTrigger : MonoBehaviour
             if (visulCue != null)
                 visulCue.SetActive(false);
 
-            PlayerController.instance.dig = null;
         }
     }
 
@@ -75,7 +96,7 @@ public class DialogueTrigger : MonoBehaviour
             {
 
                 DialogueManager.instance.StartDialogue(dialogue);
-
+                PlayerController.instance.moveDirection = Vector2.zero;
 
             }
             else
