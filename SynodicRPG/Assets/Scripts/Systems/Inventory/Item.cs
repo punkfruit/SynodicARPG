@@ -12,4 +12,5 @@ public class Item : ScriptableObject
     public type itemType;
     public bool stackable = false;
     public int maxStackSize = 1;
+    public Color color = Color.white;
 }

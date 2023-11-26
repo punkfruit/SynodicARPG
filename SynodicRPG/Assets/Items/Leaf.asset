@@ -17,3 +17,4 @@ MonoBehaviour:
   itemType: 2
   stackable: 1
   maxStackSize: 64
+  color: {r: 0.7921569, g: 1, b: 0.19215687, a: 1}

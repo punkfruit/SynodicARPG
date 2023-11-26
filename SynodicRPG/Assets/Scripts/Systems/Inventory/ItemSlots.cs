@@ -10,7 +10,6 @@ public class ItemSlots : MonoBehaviour
     [SerializeField]public bool selected = false;
     [SerializeField]
     private Item _item;
-
     public TextMeshProUGUI amountText;
     public int amount = 0;
 
@@ -32,7 +31,7 @@ public class ItemSlots : MonoBehaviour
             {
                 image.sprite = _item.Icon;
                 image.enabled = true;
-
+                image.color = _item.color;
                 UpdateText();
             }
         
