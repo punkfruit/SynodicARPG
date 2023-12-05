@@ -56,4 +56,18 @@ public class ItemSlots : MonoBehaviour
     }
 
 
+    public void UseCurrentItem()
+    {
+        if (_item != null)
+        {
+            bool used = _item.UseItem();
+
+            if(used)
+            {
+                InventoryManager.instance.RemoveItem();
+            }
+        }
+    }
+
+
 }

@@ -70,7 +70,13 @@ public class InventoryManager : MonoBehaviour
 
     public void DropItem()
     {
-       int selected = inventory.selectedSlot;
+        RemoveItem();
+        //make a pickup spawn later
+    }
+
+    public void RemoveItem()
+    {
+        int selected = inventory.selectedSlot;
 
         inventory.itemSlots[selected].amount -= 1;
         if (inventory.itemSlots[selected].amount <= 0)

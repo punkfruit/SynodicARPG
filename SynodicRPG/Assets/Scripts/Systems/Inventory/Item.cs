@@ -13,4 +13,12 @@ public class Item : ScriptableObject
     public bool stackable = false;
     public int maxStackSize = 1;
     public Color color = Color.white;
+
+
+
+    public virtual bool UseItem()
+    {
+        Debug.Log("used item" + this);
+        return true;
+    }
 }

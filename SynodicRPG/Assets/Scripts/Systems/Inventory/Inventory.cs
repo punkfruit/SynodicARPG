@@ -117,7 +117,10 @@ public class Inventory : MonoBehaviour
         selectedSlot = -1;
     }
 
-
+    public void UseSelectedItem()
+    {
+        itemSlots[selectedSlot].UseCurrentItem();
+    }
 
 
 }
