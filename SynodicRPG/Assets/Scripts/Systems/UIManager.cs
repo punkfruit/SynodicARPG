@@ -60,13 +60,21 @@ public class UIManager : MonoBehaviour
 
     private void OnInventoryClosedPerformed(InputAction.CallbackContext context)
     {
-       CloseInventory();
+
+        CloseInventory();
 
     }
 
     private void OnCancelPerformed(InputAction.CallbackContext context)
     {
-        _inventoryPanel.DeselectSlot();
+        if (_inventoryPanel.cMenuOpen())
+        {
+            _inventoryPanel.DeselectSlot();
+        }
+        else
+        {
+            CloseInventory();
+        }
     }
     public void CloseInventory()
     {

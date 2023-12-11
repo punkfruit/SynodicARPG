@@ -123,4 +123,27 @@ public class Inventory : MonoBehaviour
     }
 
 
+    public bool cMenuOpen()
+    {
+
+
+        if(cMenu1.activeInHierarchy)
+        {
+            return true;
+        }
+        else if( cMenu2.activeInHierarchy)
+        {
+            return true;
+        }
+        else if (cMenu3.activeInHierarchy)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
 }
